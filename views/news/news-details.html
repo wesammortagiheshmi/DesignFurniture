@@ -1,0 +1,19 @@
+﻿<ion-view title="{{newsItem.Title | limitTo:25}}">
+    <ion-content class="has-header">
+        <div class="list card">
+            
+            <div class="item-head">
+                <img class="full-image" ng-src="{{newsItem.ImagePath}}" ng-if="newsItem.hasImage">
+                <div class="item-detalis">
+                    <h2> {{newsItem.Title}}</h2>    
+                </div>
+            </div>
+
+            <div class="item item-body">
+                <p> {{newsItem.DateCreated}}</p>  
+                <p>{{newsItem.Description}}</p>
+            </div>
+           
+        </div>
+    </ion-content>
+</ion-view>

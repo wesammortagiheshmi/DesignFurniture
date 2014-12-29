@@ -1,0 +1,59 @@
+﻿<ion-view title="{{Name | limitTo:25}}">
+    <ion-tabs class="tabs-dark">
+        <ion-tab title="Upcoming" on-select="onTabSelected(true)">
+            <ion-content has-tabs="true">
+                <span class="center-content error-bar" ng-if="Groups.length == 0"><span class="icon ion-android-information"  data-pack="android" data-tags="knowledge, help"></span>No upcoming events added</span>
+                <ion-refresher pulling-text="Pull To Refresh" on-refresh="refresh(true)" refreshing-text="" refreshing-icon="none"></ion-refresher>
+                <div class="list type-2" ng-repeat="group in Groups">
+                  
+                    <h2 class="section-title">{{ group.Day }}</h2>
+                    <a ui-sref="{{item.sref}}" class="item item-thumbnail-left news-item" ng-repeat="item in group.Items">
+                        <div class="title"><h2> {{ item.Title }}</h2></div>
+                        <div><i class="icon ion-clipboard"></i> Event Type: {{ item.EventType }}</div>
+                        <div ng-if="item.StartTime.length > 0"><i class="icon ion-clock"></i> Start Time: {{ item.StartTime }}</div>
+                        <div><i class="icon ion-android-playstore"></i> Duration: {{ item.Duration }}</div>
+                    </a>
+                </div>
+
+                <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore(true)" distance="0%" icon="none"></ion-infinite-scroll>
+            </ion-content>
+        </ion-tab>
+        <ion-tab title="Past" on-select="onTabSelected(false)">
+            <ion-content has-tabs="true">
+                <span class="center-content error-bar" ng-if="Groups.length == 0"><span class="icon ion-android-information" data-pack="android" data-tags="knowledge, help"></span>No past events added</span>
+                <ion-refresher pulling-text="Pull To Refresh" on-refresh="refresh(false)" refreshing-text="" refreshing-icon="none"></ion-refresher>
+                <div class="list type-2" ng-repeat="group in Groups">
+
+                    <h2 class="section-title">{{ group.Day }}</h2>
+                    <a ui-sref="{{item.sref}}" class="item item-thumbnail-left news-item" ng-repeat="item in group.Items">
+                        <div class="title"><h2> {{ item.Title }}</h2></div>
+                        <div><i class="icon ion-clipboard"></i> Event Type: {{ item.EventType }}</div>
+                        <div ng-if="item.StartTime.length > 0"><i class="icon ion-clock"></i> Start Time: {{ item.StartTime }}</div>
+                        <div><i class="icon ion-android-playstore"></i> Duration: {{ item.Duration }}</div>
+                    </a>
+                </div>
+                <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore(false)" distance="0%" icon="none"></ion-infinite-scroll>
+            </ion-content>
+        </ion-tab>
+    </ion-tabs>
+</ion-view>
+
+
+<script id="modal.html" type="text/ng-template">
+    <div class="modal">
+        <header class="bar bar-header bar-positive"></header>
+        <form name="emailForm" ng-submit="submitForm(email)" novalidate>
+            <div class="bar bar-subheader">
+                <div class="form-group has-error">
+                    <label class="control-label">Your Email</label>
+                    <input type="email" name="email" class="form-control" ng-model="email" placeholder="Email Address">
+                    <span ng-show="emailForm.email.$invalid && !emailForm.email.$pristine" class="help-block">Invalid email.</span>
+                </div>
+                <div class="button-bar">
+                    <button class="button button-dark" ng-click="skipModal()">Skip</button>
+                    <button class="button button-positive" type="submit" ng-disabled="emailForm.email.$pristine || emailForm.email.$dirty && emailForm.email.$invalid">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</script>

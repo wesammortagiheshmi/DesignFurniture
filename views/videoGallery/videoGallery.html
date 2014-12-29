@@ -1,0 +1,16 @@
+<ion-view title="{{Name | limitTo:25}}">
+    <ion-content class="has-header">
+        <ion-refresher pulling-text="Pull To Refresh" on-refresh="refreshItems()"
+                       refreshing-text="" refreshing-icon="none">
+        </ion-refresher>
+        <div class="gallery-container">
+            <div class="gallery-container-in">
+                <div class="gallery-item" ng-repeat="galleryItem in Items" ng-click="openVideo(galleryItem)">
+                    <img class="img-loading" rn-lazy-background="galleryItem.ThumbUrl" rn-lazy-loading-class="img-loading" rn-lazy-loaded-class="img-loaded" />
+                    <p ng-if="galleryItem.Caption !=null">{{galleryItem.Caption}}</p>
+                </div>
+            </div>
+        </div>
+        <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="0%" icon="none"></ion-infinite-scroll>
+    </ion-content>
+</ion-view>

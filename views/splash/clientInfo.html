@@ -1,0 +1,19 @@
+<ion-view class="bg-1 clientinfo" ng-class="ThemeCssClass">
+    <div ng-if="hasError==true" class="loaderError">Error happend while loading app</div>
+    <div ng-if="!clientLoaded"  class="clientinfo-loader"></div>
+
+    <ion-content padding="true">
+        <div class="center-content" ng-cloak>
+            <div ng-if="clientLoaded" ng-show="ImageLoaded">
+                <div class="circle" ng-if="hasLogo">
+                    <img ng-cache ng-src="{{client.Logo}}" imageonload="ImageLoadCompelete" />
+                </div>
+                <h1>{{client.Name}}</h1>
+                <div class="splash-container"><div class="splash-loader"></div></div>
+
+
+            </div>
+        </div>
+    </ion-content>
+    <p ng-if="clientLoaded" class="p-pull-down">Powered by <br /> <span><img src="images/logo3al.png" /></span></p>
+</ion-view>

@@ -1,0 +1,28 @@
+﻿<ion-view title="{{item.Title | limitTo:25}}">
+    <ion-content class="has-header">
+        <div class="card">
+            <div class="item event">
+                <div class="item-text-wrap">{{ item.Title }}</div>
+                <div>Start Date: {{ item.StartDate }}</div>
+                <div>Event Type: {{ item.EventType }}</div>
+                <div ng-if="item.StartTime">Start Time: {{ item.StartTime }}</div>
+                <div>Duration: {{ item.Duration }}</div>
+            </div>
+            <div class="item item-text-wrap">
+                <div>{{ item.Description }}</div>
+            </div>
+            <div class="item">
+                <div>
+                    <a class="subdued">RecursionType: {{ item.RecursionType }}</a>
+                </div>
+                <div>
+                    <a class="subdued" ng-if="recursionType.Name != 'none'">End Date: {{ item.RecursionEndDate }}</a>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+
+
+
+

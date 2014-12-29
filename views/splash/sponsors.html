@@ -1,0 +1,18 @@
+<ion-view ng-class="ThemeCssClass" class="bg-2 sponsors">
+    <ion-content padding="true">
+        <div class="error-bar" ng-if="hasError">
+            <img src="images/connection-error.png" />
+            {{error}}
+        </div>
+        <ion-list>
+            <div class="center-content" ng-cloak>
+                <h1>sponsored by</h1>
+
+                <div class="center-circle" ng-repeat="sponsor in sponsors">
+                    <div class="image">  <img ng-cache ng-src="{{sponsor.LogoPath}}" /></div>
+
+                </div>
+            </div>
+        </ion-list>
+    </ion-content>
+</ion-view>

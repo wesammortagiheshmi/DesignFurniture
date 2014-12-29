@@ -1,0 +1,36 @@
+﻿<ion-view title="{{contactUs.Name | limitTo:25}}">
+    <ion-content class="has-header contact-us">
+        
+        <div class="row contact-name" ng-if="contactUs.OrganizationName.length > 0">
+            <div class="col col-90">{{contactUs.OrganizationName}}</div>
+        </div>
+
+        <div class="row contact-poc" ng-if="contactUs.POCName.length > 0">
+            <div class="col col-90">{{contactUs.POCName}}</div>
+        </div>
+    
+
+        <div class="row contact-mail" ng-if="contactUs.Email.length > 0">
+
+            <div class="col col-90"><a href="mailto:{{contactUs.Email}}">{{contactUs.Email}}</a></div>
+        </div>
+        <div class="row contact-address" ng-if="contactUs.Address.length > 0">
+
+            <div class="col col-90">{{contactUs.Address}}</div>
+        </div>
+        <div class="row contact-phones" ng-if="contactUs.Phone.length > 0">
+
+            <div class="phone"><a href="tel:{{contactUs.Phone}}">{{contactUs.Phone}}</a></div>
+            <div class="mobile"><a href="tel:{{contactUs.Mobile}}">{{contactUs.Mobile}}</a></div>
+        </div>
+   
+        <div class="row contact-messsage" ng-if="contactUs.Message.length > 0">
+            <div class="col col-90">{{contactUs.Message}}</div>
+        </div>
+        <div class="row responsive-sm contact-map">
+            <div class="col col-90">
+                <div id="map_canvas" style="height:250px; width: 100%;"></div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

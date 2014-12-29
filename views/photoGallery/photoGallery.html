@@ -1,0 +1,36 @@
+<ion-view title="{{Name | limitTo:25}}">
+    <ion-content class="has-header">
+        <ion-refresher pulling-text="Pull To Refresh" on-refresh="refreshItems()"
+                       refreshing-text="" refreshing-icon="none">
+        </ion-refresher>
+        <div class="gallery-container">
+            <div class="gallery-container-in">
+                <div class="gallery-item" ng-repeat="galleryItem in Items" ng-click="openItem(galleryItem)">
+                    <p ng-if="galleryItem.Caption !=null" >{{galleryItem.Caption | limitTo: 30}}</p>
+                    <img class="img-loading" rn-lazy-background="galleryItem.ImagePath" rn-lazy-loading-class="img-loading" rn-lazy-loaded-class="img-loaded" />
+
+
+                </div>
+            </div>
+        </div>
+        <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="0%" icon="none"></ion-infinite-scroll>
+    </ion-content>
+</ion-view>
+
+<script id="gallery-modal.html" type="text/ng-template">
+    <div class="modal image-modal transparent">
+        <ion-view>
+            <div class="button button-clear" ng-click="modal.remove()"><span class="icon ion-close"></span></div>
+            <ion-slide-box show-pager="false" active-slide="activeSlide" on-slide-changed="slideChanged(index)">
+                <ion-slide ng-repeat="item in Items">
+                    <img class="img-loading" title="{{item.Caption}}" ng-src="{{item.ImagePath}}" style="width:100%;" />
+                    <p ng-if="item.Caption !=null">{{item.Caption}}</p>
+                </ion-slide>
+            </ion-slide-box>
+            <!--<div class="center-content">
+                <button ng-click="previousSlide()" ng-if="slideIndex > 0">Previous</button>
+                <button ng-click="nextSlide()" ng-if="slideIndex != Items.length-1">Next</button>
+            </div>-->
+        </ion-view>
+    </div>
+</script>

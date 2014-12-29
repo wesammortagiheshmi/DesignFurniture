@@ -1,0 +1,18 @@
+<ion-view title="{{Name | limitTo:25}}">
+    <ion-content class="has-header">
+        <ion-refresher pulling-text="Pull To Refresh" on-refresh="refreshItems()"
+                       refreshing-text="" refreshing-icon="none">
+        </ion-refresher>
+        <div class="list">
+            <a ui-sref="{{item.sref}}" class="item item-thumbnail-left news-item" ng-repeat="item in Items">
+                <img class="img-loading" rn-lazy-background="item.ImagePath" rn-lazy-loading-class="img-loading" rn-lazy-loaded-class="img-loaded" />
+                <div class="title"><h2>{{ item.Title }}</h2></div>
+                <h4>{{ item.DateCreated }}</h4>
+                <div class="item-text-wrap">
+                <h4>{{ item.Description  | limitTo:100 }}</h4>
+                </div>
+            </a>
+        </div>
+        <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="0%" icon="none"></ion-infinite-scroll>
+    </ion-content>
+</ion-view>
